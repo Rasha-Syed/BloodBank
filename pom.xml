@@ -9,34 +9,21 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <!-- =======================
-         Global Project Settings
-         ======================= -->
+    <!-- ======================================================
+         GLOBAL PROJECT SETTINGS (CLEAN – NO SONAR CONFIG HERE)
+        ====================================================== -->
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- SonarQube (safe to keep) -->
-        <sonar.projectKey>BloodBank</sonar.projectKey>
-        <sonar.host.url>http://localhost:9002</sonar.host.url>
-
-        <!-- Code coverage -->
-        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-
-        <!-- Sonar should scan Java + JSP -->
-        <sonar.sources>src/main/java,src/main/webapp</sonar.sources>
-        <sonar.java.binaries>target/classes</sonar.java.binaries>
-        <sonar.web.file.suffixes>jsp,jspf,html,xhtml,css,js</sonar.web.file.suffixes>
     </properties>
 
-
-    <!-- =======================
-          Dependencies
-         ======================= -->
+    <!-- ======================================================
+         DEPENDENCIES
+        ====================================================== -->
     <dependencies>
 
-        <!-- Servlet API for JSP/Servlets -->
+        <!-- Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -44,7 +31,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSTL (Jakarta) -->
+        <!-- JSTL -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -59,7 +46,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- OPTIONAL: H2 in-memory DB for unit testing -->
+        <!-- H2 Database (optional testing only) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -69,16 +56,15 @@
 
     </dependencies>
 
-
-    <!-- =======================
-         Build Plugins
-         ======================= -->
+    <!-- ======================================================
+         BUILD PLUGINS
+        ====================================================== -->
     <build>
         <finalName>BloodBank</finalName>
 
         <plugins>
 
-            <!-- Compiler Plugin -->
+            <!-- Java Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -99,7 +85,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire (JUnit 5 test runner) -->
+            <!-- Surefire (JUnit runner) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -109,7 +95,7 @@
                 </configuration>
             </plugin>
 
-            <!-- JaCoCo — Code Coverage -->
+            <!-- Jacoco Code Coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -131,7 +117,7 @@
                 </executions>
             </plugin>
 
-            <!-- Sonar Scanner Plugin -->
+            <!-- Sonar Scanner -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
@@ -139,7 +125,6 @@
             </plugin>
 
         </plugins>
-
     </build>
 
 </project>

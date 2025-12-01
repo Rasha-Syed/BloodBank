@@ -34,17 +34,15 @@ pipeline {
         /**********************
          * SONARQUBE ANALYSIS
          **********************/
+        
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube_BloodBank_Server') {
-                    bat """
-                    mvn sonar:sonar ^
-                        -Dsonar.projectKey=BloodBank ^
-                        -Dsonar.host.url=http://localhost:9002
-                    """
-                }
-            }
+    steps {
+        withSonarQubeEnv('SonarQube_BloodBank_Server') {
+            bat "mvn sonar:sonar -Dsonar.projectKey=BloodBank -Dsonar.host.url=http://localhost:9002"
         }
+    }
+}
+
 
         /**********************
          * QUALITY GATE CHECK

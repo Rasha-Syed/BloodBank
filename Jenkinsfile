@@ -19,7 +19,6 @@ pipeline {
 
         /**********************
          * BUILD + TEST + COVERAGE
-         * (Single Maven run for efficiency)
          **********************/
         stage('Build & Test') {
             steps {
@@ -27,7 +26,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
                 }
             }
         }
@@ -70,7 +69,6 @@ pipeline {
 
         /**********************
          * DEPLOY TO TOMCAT (optional)
-         * Enable when ready
          **********************/
         stage('Deploy') {
             steps {
@@ -82,7 +80,7 @@ pipeline {
     }
 
     /**********************
-     * NOTIFICATIONS (optional)
+     * NOTIFICATIONS
      **********************/
     post {
         success {

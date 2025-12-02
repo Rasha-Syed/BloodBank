@@ -52,7 +52,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deployment stage placeholder..."
-                // bat "curl --upload-file target/BloodBank.war http://tomcat_user:tomcat_pass@localhost:8087/manager/text/deploy?path=/BloodBank&update=true"
+                bat "curl --upload-file target/BloodBank.war http://tomcat_user:tomcat_pass@localhost:8087/manager/text/deploy?path=/BloodBank&update=true"
             }
         }
     }

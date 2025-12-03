@@ -6,8 +6,7 @@ pipeline {
         maven 'Maven_3.9'
     }
     environment {
-        DB_USERNAME = credentials('dbUser')
-        DB_PASSWORD = credentials('dbPass')
+        DB_CREDS = credentials('oracle-db-credentials')
     }
 
     stages {

@@ -55,10 +55,12 @@ pipeline {
        stage('Deploy') {
     steps {
         bat """
-            curl -u admin:satoru --upload-file target/BloodBank.war "http://localhost:8087/manager/text/deploy?path=/BloodBank&update=true"
+            curl -u admin:satoru "http://localhost:8087/manager/text/deploy?path=/BloodBank&war=file:C:/ProgramData/Jenkins/.jenkins/workspace/New/target/BloodBank.war&update=true"
         """
     }
 }
+
+
 
 
     }

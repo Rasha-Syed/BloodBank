@@ -5,6 +5,10 @@ pipeline {
         jdk 'JDK_21'
         maven 'Maven_3.9'
     }
+    environment {
+        DB_USERNAME = credentials('dbUser')
+        DB_PASSWORD = credentials('dbPass')
+    }
 
     stages {
 
@@ -52,8 +56,8 @@ pipeline {
        stage('Deploy') {
     steps {
         bat """
-            curl --upload-file target/BloodBank.war \
-            "http://admin:satoru@localhost:8087/manager/text/deploy?path=/BloodBank&update=true"
+            curl -u admin:satoru -T target/BloodBank.war "http://localhost:8087/manager/text/deploy?path=/BloodBank&update=true"
+
         """
     }
 }

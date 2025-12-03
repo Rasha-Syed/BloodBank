@@ -23,8 +23,8 @@
     // ✔ REAL DB connection method
     public Connection getConnection() throws Exception {
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
-        String usernameDB = "system";
-        String passwordDB = "kento";
+        String usernameDB = System.getenv("DB_USERNAME");
+        String passwordDB = System.getenv("DB_PASSWORD");
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         return DriverManager.getConnection(url, usernameDB, passwordDB);
